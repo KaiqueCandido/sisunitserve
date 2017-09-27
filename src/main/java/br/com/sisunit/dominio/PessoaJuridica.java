@@ -54,7 +54,7 @@ public class PessoaJuridica extends Cliente {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        this.razaoSocial = razaoSocial;
+        this.razaoSocial = razaoSocial.toUpperCase();
     }
 
     public String getRepresentanteLegal() {
@@ -62,7 +62,7 @@ public class PessoaJuridica extends Cliente {
     }
 
     public void setRepresentanteLegal(String RepresentanteLegal) {
-        this.RepresentanteLegal = RepresentanteLegal;
+        this.RepresentanteLegal = RepresentanteLegal.toUpperCase();
     }
 
     @Override

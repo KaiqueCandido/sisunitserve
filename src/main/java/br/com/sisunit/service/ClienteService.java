@@ -7,7 +7,6 @@ package br.com.sisunit.service;
 
 import br.com.sisunit.dao.ClienteDao;
 import br.com.sisunit.dominio.Cliente;
-import br.com.sisunit.enums.StatusCadastro;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

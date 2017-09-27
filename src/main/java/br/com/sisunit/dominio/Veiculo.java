@@ -8,6 +8,7 @@ package br.com.sisunit.dominio;
 import br.com.sisunit.enums.StatusVeiculo;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -32,33 +35,36 @@ public class Veiculo implements Serializable {
     private String descricao;
     @Column(length = 25)
     private String placa;
-    @Column(length = 125)
-    private String cidade;
-    @Column(length = 25)
-    private String uf;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Estado estado;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Cidade cidade;
     private Integer qtdelugares;
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private StatusVeiculo statusVeiculo;
 
     public Veiculo() {
+        this.statusVeiculo = StatusVeiculo.ATIVO;
     }
 
-    public Veiculo(String descricao, String placa, String cidade, String uf, Integer qtdelugares) {
+    public Veiculo(String descricao, String placa, Estado estado, Cidade cidade, Integer qtdelugares) {
         this.descricao = descricao;
         this.placa = placa;
+        this.estado = estado;
         this.cidade = cidade;
-        this.uf = uf;
         this.qtdelugares = qtdelugares;
+        this.statusVeiculo = StatusVeiculo.ATIVO;
     }
 
-    public Veiculo(String descricao, Long id, String placa, String cidade, String uf, Integer qtdelugares) {
-        this.descricao = descricao;
+    public Veiculo(Long id, String descricao, String placa, Estado estado, Cidade cidade, Integer qtdelugares) {
         this.id = id;
+        this.descricao = descricao;
         this.placa = placa;
+        this.estado = estado;
         this.cidade = cidade;
-        this.uf = uf;
         this.qtdelugares = qtdelugares;
+        this.statusVeiculo = StatusVeiculo.ATIVO;
     }
 
     public Long getId() {
@@ -74,7 +80,7 @@ public class Veiculo implements Serializable {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao.toUpperCase();
     }
 
     public String getPlaca() {
@@ -82,23 +88,23 @@ public class Veiculo implements Serializable {
     }
 
     public void setPlaca(String placa) {
-        this.placa = placa;
+        this.placa = placa.toUpperCase();
     }
 
-    public String getCidade() {
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
     }
 
     public Integer getQtdelugares() {
@@ -149,7 +155,7 @@ public class Veiculo implements Serializable {
 
     @Override
     public String toString() {
-        return "Veiculo{" + "id=" + id + ", descricao=" + descricao + ", placa=" + placa + ", cidade=" + cidade + ", uf=" + uf + ", qtdelugares=" + qtdelugares + ", statusVeiculo=" + statusVeiculo + '}' + super.toString();
+        return "Veiculo{" + "id=" + id + ", descricao=" + descricao + ", placa=" + placa + ", estado=" + estado + ", cidade=" + cidade + ", qtdelugares=" + qtdelugares + ", statusVeiculo=" + statusVeiculo + '}';
     }
 
 }

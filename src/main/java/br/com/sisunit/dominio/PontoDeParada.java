@@ -76,7 +76,7 @@ public class PontoDeParada implements Serializable {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public String getReferencia() {
@@ -84,7 +84,7 @@ public class PontoDeParada implements Serializable {
     }
 
     public void setReferencia(String referencia) {
-        this.referencia = referencia;
+        this.referencia = referencia.toUpperCase();
     }
 
     public String getLatitude() {

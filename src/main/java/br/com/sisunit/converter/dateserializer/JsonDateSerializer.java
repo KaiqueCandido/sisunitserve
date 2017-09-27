@@ -19,13 +19,13 @@ import java.util.Date;
  * @email kaiqueoliveira.ci@gmail.com
  */
 public class JsonDateSerializer extends JsonSerializer<Date> {
-    
+
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    
+
     @Override
     public void serialize(Date t, JsonGenerator jg, SerializerProvider sp) throws IOException, JsonProcessingException {
         String dataFormatada = dateFormat.format(t);
         jg.writeString(dataFormatada);
     }
-    
+
 }

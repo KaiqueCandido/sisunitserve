@@ -11,6 +11,6 @@ import javax.ws.rs.core.Application;
  *
  * @author Kaique Candido kaiqueoliveira.ci@gmail.com
  */
-@javax.ws.rs.ApplicationPath("sisunit")
+@javax.ws.rs.ApplicationPath("ws")
 public class ApplicationConfig extends Application {
 }
