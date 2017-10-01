@@ -5,7 +5,7 @@
  */
 package br.com.sisunit.webservice;
 
-import br.com.sisunit.dominio.Veiculo;
+import br.com.sisunit.entity.Veiculo;
 import br.com.sisunit.service.VeiculoService;
 import java.util.List;
 import javax.ejb.EJB;

@@ -5,7 +5,7 @@
  */
 package br.com.sisunit.webservice;
 
-import br.com.sisunit.dominio.Rota;
+import br.com.sisunit.entity.Rota;
 import br.com.sisunit.service.RotaService;
 import java.util.List;
 import javax.ejb.EJB;

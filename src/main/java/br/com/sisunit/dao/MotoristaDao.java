@@ -5,14 +5,17 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.dominio.Motorista;
-import br.com.sisunit.enums.StatusCadastro;
+import br.com.sisunit.entity.Conta;
+import br.com.sisunit.entity.Motorista;
+import br.com.sisunit.entity.Pessoa_;
+import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -31,8 +34,12 @@ public class MotoristaDao {
         return motorista;
     }
 
-    public Motorista excluir(Motorista motorista) {
-        motorista.setStatus(StatusCadastro.INATIVO);
+    public Motorista excluir(Motorista motorista, Conta conta) {
+        motorista.getContas().forEach((c) -> {
+            if (c.getId().equals(conta.getId())) {
+                c.setStatusDoCadastro(StatusDoCadastroEnum.INATIVO);
+            }
+        });
         return atualizar(motorista);
     }
 
@@ -46,6 +53,8 @@ public class MotoristaDao {
     }
 
     public List<Motorista> listar() {
+        Root<Motorista> m = query.from(Motorista.class);
+        query.orderBy(em.getCriteriaBuilder().asc(m.get(Pessoa_.nome)));
         return em.createQuery(query).getResultList();
     }
 

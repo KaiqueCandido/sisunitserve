@@ -6,7 +6,7 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.RotaDao;
-import br.com.sisunit.dominio.Rota;
+import br.com.sisunit.entity.Rota;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

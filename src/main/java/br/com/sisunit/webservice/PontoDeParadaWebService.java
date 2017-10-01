@@ -5,7 +5,7 @@
  */
 package br.com.sisunit.webservice;
 
-import br.com.sisunit.dominio.PontoDeParada;
+import br.com.sisunit.entity.PontoDeParada;
 import br.com.sisunit.service.PontoDeParadaService;
 import java.util.List;
 import javax.ejb.EJB;

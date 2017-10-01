@@ -5,8 +5,8 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.dominio.Veiculo;
-import br.com.sisunit.enums.StatusVeiculo;
+import br.com.sisunit.entity.Veiculo;
+import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -32,13 +32,12 @@ public class VeiculoDao {
     }
 
     public Veiculo excluir(Veiculo veiculo) {
-        veiculo.setStatusVeiculo(StatusVeiculo.INATIVO);
+        veiculo.setStatusDoCadastro(StatusDoCadastroEnum.INATIVO);
         return atualizar(veiculo);
     }
 
     public Veiculo atualizar(Veiculo veiculo) {
-        em.merge(veiculo);
-        return veiculo;
+        return em.merge(veiculo);
     }
 
     public Veiculo pesquisarPeloId(Object o) {

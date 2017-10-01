@@ -6,7 +6,7 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.PontoDeParadaDao;
-import br.com.sisunit.dominio.PontoDeParada;
+import br.com.sisunit.entity.PontoDeParada;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

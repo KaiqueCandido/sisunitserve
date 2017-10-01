@@ -6,7 +6,8 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.MotoristaDao;
-import br.com.sisunit.dominio.Motorista;
+import br.com.sisunit.entity.Conta;
+import br.com.sisunit.entity.Motorista;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -29,8 +30,8 @@ public class MotoristaService {
         return dao.atualizar(motorista);
     }
 
-    public Motorista excluir(Motorista motorista) {
-        return dao.excluir(motorista);
+    public Motorista excluir(Motorista motorista, Conta conta) {
+        return dao.excluir(motorista, conta);
     }
 
     public Motorista pesquisarPeloId(Object o) {

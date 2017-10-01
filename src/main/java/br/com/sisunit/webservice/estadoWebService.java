@@ -5,7 +5,7 @@
  */
 package br.com.sisunit.webservice;
 
-import br.com.sisunit.dominio.Estado;
+import br.com.sisunit.entity.Estado;
 import br.com.sisunit.service.EstadoService;
 import java.util.List;
 import javax.ejb.EJB;

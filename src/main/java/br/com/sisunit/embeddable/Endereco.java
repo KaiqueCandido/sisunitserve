@@ -5,43 +5,50 @@
  */
 package br.com.sisunit.embeddable;
 
+import br.com.sisunit.enums.TipoDeZonaEnum;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 /**
  *
- * @author Kaique C. Oliveira
- * @email kaiqueoliveira.ci@gmail.com
+ * @author Kaique Oliveira
+ * @Email kaiqueoliveira.ci@gmail.com
  */
 @Embeddable
 public class Endereco implements Serializable {
-    
-    @Column(length = 25)
-    private String cep;
-    @Column(length = 125)
-    private String rua;
-    @Column(length = 125)
+
+    @Column(length = 100)
+    private String logradouro;
+    @Column(length = 100)
     private String bairro;
-    @Column(length = 125)
-    private String cidade;
-    @Column(length = 25)
-    private String uf;
+    @Column(length = 100)
+    private String complemento;
+    @Column(length = 30)
+    private String cep;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 30)
+    private TipoDeZonaEnum tipoDeZona;
 
-    public String getCep() {
-        return cep;
+    public Endereco() {
     }
 
-    public void setCep(String cep) {
+    public Endereco(String logradouro, String bairro, String complemento, String cep, TipoDeZonaEnum tipoDeZona) {
+        this.logradouro = logradouro;
+        this.bairro = bairro;
+        this.complemento = complemento;
         this.cep = cep;
+        this.tipoDeZona = tipoDeZona;
     }
 
-    public String getRua() {
-        return rua;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getBairro() {
@@ -52,22 +59,33 @@ public class Endereco implements Serializable {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public String getUf() {
-        return uf;
+    public String getCep() {
+        return cep;
     }
 
-    public void setUf(String uf) {
-        this.uf = uf;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
-    
-    
+
+    public TipoDeZonaEnum getTipoDeZona() {
+        return tipoDeZona;
+    }
+
+    public void setTipoDeZona(TipoDeZonaEnum tipoDeZona) {
+        this.tipoDeZona = tipoDeZona;
+    }
+
+    @Override
+    public String toString() {
+        return "Endereco{" + "logradouro=" + logradouro + ", bairro=" + bairro + ", complemento=" + complemento + ", cep=" + cep + ", tipoDeZona=" + tipoDeZona + '}';
+    }
 
 }

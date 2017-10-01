@@ -5,8 +5,8 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.dominio.PontoDeParada;
-import br.com.sisunit.enums.StatusCadastro;
+import br.com.sisunit.entity.PontoDeParada;
+import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -32,13 +32,12 @@ public class PontoDeParadaDao {
     }
 
     public PontoDeParada excluir(PontoDeParada pontoDeParada) {
-        pontoDeParada.setStatus(StatusCadastro.INATIVO);
+        pontoDeParada.setStatusDoCadastro(StatusDoCadastroEnum.INATIVO);
         return atualizar(pontoDeParada);
     }
 
     public PontoDeParada atualizar(PontoDeParada pontoDeParada) {
-        em.merge(pontoDeParada);
-        return pontoDeParada;
+        return em.merge(pontoDeParada);
     }
 
     public PontoDeParada pesquisarPeloId(Object o) {

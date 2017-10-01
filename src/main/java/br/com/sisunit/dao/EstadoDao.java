@@ -5,14 +5,15 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.dominio.Cliente;
-import br.com.sisunit.dominio.Estado;
+import br.com.sisunit.entity.Estado;
+import br.com.sisunit.entity.Estado_;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -27,6 +28,8 @@ public class EstadoDao {
     private CriteriaQuery<Estado> query;
 
     public List<Estado> listar() {
+        Root<Estado> e = query.from(Estado.class);
+        query.orderBy(em.getCriteriaBuilder().asc(e.get(Estado_.uf)));
         return em.createQuery(query).getResultList();
     }
 

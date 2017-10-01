@@ -6,7 +6,7 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.VeiculoDao;
-import br.com.sisunit.dominio.Veiculo;
+import br.com.sisunit.entity.Veiculo;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

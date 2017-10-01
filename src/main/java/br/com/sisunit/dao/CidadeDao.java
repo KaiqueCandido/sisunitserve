@@ -5,15 +5,13 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.dominio.Cidade;
-import br.com.sisunit.dominio.Cidade_;
-import br.com.sisunit.dominio.Estado;
+import br.com.sisunit.entity.Cidade;
+import br.com.sisunit.entity.Cidade_;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
@@ -30,12 +28,15 @@ public class CidadeDao {
     private CriteriaQuery<Cidade> query;
 
     public List<Cidade> listar() {
+        Root<Cidade> c = query.from(Cidade.class);
+        query.orderBy(em.getCriteriaBuilder().asc(c.get(Cidade_.nome)));
         return em.createQuery(query).getResultList();
     }
 
     public List<Cidade> listarPorEstado(Long idEstado) {
-        Root<Cidade> p = query.from(Cidade.class);
-        query.where(em.getCriteriaBuilder().equal(p.get(Cidade_.idEstado), idEstado));
+        Root<Cidade> c = query.from(Cidade.class);
+        query.where(em.getCriteriaBuilder().equal(c.get(Cidade_.idEstado), idEstado));
+        query.orderBy(em.getCriteriaBuilder().asc(c.get(Cidade_.nome)));
         return em.createQuery(query).getResultList();
     }
 

@@ -3,14 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.sisunit.exeption;
 
 /**
  *
- * @author Kaique C. Oliveira
- * @email kaiqueoliveira.ci@gmail.com
+ * @author Kaique Oliveira
+ * @Email kaiqueoliveira.ci@gmail.com
  */
-public class LoginException extends Exception{
+public class LoginException extends Exception {
 
 }

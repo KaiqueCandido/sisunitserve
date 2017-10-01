@@ -6,7 +6,8 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.PassageiroDao;
-import br.com.sisunit.dominio.Passageiro;
+import br.com.sisunit.entity.Conta;
+import br.com.sisunit.entity.Passageiro;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -29,8 +30,8 @@ public class PassageiroService {
         return dao.atualizar(passageiro);
     }
 
-    public Passageiro excluir(Passageiro passageiro) {
-        return dao.excluir(passageiro);
+    public Passageiro excluir(Passageiro passageiro, Conta conta) {
+        return dao.excluir(passageiro, conta);
     }
 
     public Passageiro pesquisarPeloId(Object o) {

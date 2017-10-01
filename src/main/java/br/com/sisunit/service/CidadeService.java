@@ -6,7 +6,7 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.dao.CidadeDao;
-import br.com.sisunit.dominio.Cidade;
+import br.com.sisunit.entity.Cidade;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

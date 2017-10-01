@@ -5,7 +5,7 @@
  */
 package br.com.sisunit.webservice;
 
-import br.com.sisunit.dominio.Passageiro;
+import br.com.sisunit.entity.Passageiro;
 import br.com.sisunit.service.PassageiroService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -53,13 +53,13 @@ public class PassageiroWebService {
         return Response.ok(passageiro).build();
     }
 
-    @POST
-    @Path("{idPassageiro}")
-    public Response removePassageiro(@PathParam(value = "idPassageiro") Long idPassageiro) {
-        Passageiro passageiroPesquisado = passageiroService.pesquisarPeloId(idPassageiro);
-        Passageiro passageiro = passageiroService.excluir(passageiroPesquisado);
-        return Response.ok(passageiro).build();
-    }
+//    @POST
+//    @Path("{idPassageiro}")
+//    public Response removePassageiro(@PathParam(value = "idPassageiro") Long idPassageiro) {
+//        Passageiro passageiroPesquisado = passageiroService.pesquisarPeloId(idPassageiro);
+//        Passageiro passageiro = passageiroService.excluir(passageiroPesquisado);
+//        return Response.ok(passageiro).build();
+//    }
 
     @PUT
     public Response atualizaPassageiro(Passageiro p) {
