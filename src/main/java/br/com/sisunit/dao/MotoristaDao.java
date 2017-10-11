@@ -6,6 +6,7 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.Motorista;
+import br.com.sisunit.entity.Motorista_;
 import br.com.sisunit.entity.Pessoa_;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -47,9 +48,7 @@ public class MotoristaDao {
     }
 
     public List<Motorista> listar() {
-        Root<Motorista> m = query.from(Motorista.class);
-        query.orderBy(em.getCriteriaBuilder().asc(m.get(Pessoa_.nome)));
-        return em.createQuery(query).getResultList();
+        return em.createQuery(query).getResultList(); 
     }
 
     @PostConstruct
