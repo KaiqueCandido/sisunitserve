@@ -32,38 +32,38 @@ public class VeiculoWebService {
     @EJB
     private VeiculoService veiculoService;
 
+    @POST
+    public Response salvar(Veiculo veiculo) {
+        Veiculo v = veiculoService.salvar(veiculo);
+        return Response.ok(v).build();
+    }
+
+    @POST
+    @Path("remove")
+    public Response excluir(Veiculo veiculo) {
+        Veiculo v = veiculoService.excluir(veiculo);
+        return Response.ok(v).build();
+    }
+
+    @PUT
+    public Response atualizar(Veiculo veiculo) {
+        Veiculo v = veiculoService.atualizar(veiculo);
+        return Response.ok(v).build();
+    }
+
     @GET
-    public Response listVeiculo() {
+    @Path("{id}")
+    public Response pesquisarporId(@PathParam(value = "id") Long id) {
+        Veiculo veiculo = veiculoService.pesquisarPeloId(id);
+        return Response.ok(veiculo).build();
+    }
+
+    @GET
+    public Response listar() {
         List<Veiculo> listarVeiculos = veiculoService.listar();
         GenericEntity<List<Veiculo>> veiculos = new GenericEntity<List<Veiculo>>(listarVeiculos) {
         };
         return Response.ok(veiculos).build();
     }
 
-    @GET
-    @Path("{idVeiculo}")
-    public Response getVeiculo(@PathParam(value = "idVeiculo") Long idVeiculo) {
-        Veiculo veiculo = veiculoService.pesquisarPeloId(idVeiculo);
-        return Response.ok(veiculo).build();
-    }
-
-    @POST
-    public Response addVeiculo(Veiculo v) {
-        Veiculo veiculo = veiculoService.salvar(v);
-        return Response.ok(veiculo).build();
-    }
-
-    @POST
-    @Path("{idVeiculo}")
-    public Response removeVeiculo(@PathParam(value = "idVeiculo") Long idVeiculo) {
-        Veiculo veiculoSelecionado = veiculoService.pesquisarPeloId(idVeiculo);
-        Veiculo veiculo = veiculoService.excluir(veiculoSelecionado);
-        return Response.ok(veiculo).build();
-    }
-
-    @PUT
-    public Response atualizaVeiculo(Veiculo v) {
-        Veiculo veiculo = veiculoService.atualizar(v);
-        return Response.ok(veiculo).build();
-    }
 }

@@ -27,13 +27,13 @@ public class Motorista extends Pessoa {
     public Motorista() {
     }
 
-    public Motorista(String codCnh, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
-        super(nome, sobrenome, dataDeNascimento, sexo, documentosPessoais, contato, endereco);
+    public Motorista(String codCnh, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+        super(nome, sobrenome, dataDeNascimento, sexo, conta, documentosPessoais, contato, endereco);
         this.codCnh = codCnh;
     }
 
-    public Motorista(String codCnh, Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
-        super(id, nome, sobrenome, dataDeNascimento, sexo, documentosPessoais, contato, endereco);
+    public Motorista(String codCnh, Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+        super(id, nome, sobrenome, dataDeNascimento, sexo, conta, documentosPessoais, contato, endereco);
         this.codCnh = codCnh;
     }
 

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.com.sisunit.entity;
 
 import br.com.sisunit.embeddable.Contato;
@@ -21,8 +20,8 @@ import javax.persistence.Temporal;
  * @Email kaiqueoliveira.ci@gmail.com
  */
 @Entity
-public class Gestor extends Pessoa{
-    
+public class Gestor extends Pessoa {
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeCadastro;
@@ -31,13 +30,13 @@ public class Gestor extends Pessoa{
         this.dataDeCadastro = new Date();
     }
 
-    public Gestor(String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
-        super(nome, sobrenome, dataDeNascimento, sexo, documentosPessoais, contato, endereco);
+    public Gestor(String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+        super(nome, sobrenome, dataDeNascimento, sexo, conta, documentosPessoais, contato, endereco);
         this.dataDeCadastro = new Date();
     }
 
-    public Gestor(Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
-        super(id, nome, sobrenome, dataDeNascimento, sexo, documentosPessoais, contato, endereco);
+    public Gestor(Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+        super(id, nome, sobrenome, dataDeNascimento, sexo, conta, documentosPessoais, contato, endereco);
         this.dataDeCadastro = new Date();
     }
 
@@ -51,11 +50,7 @@ public class Gestor extends Pessoa{
 
     @Override
     public String toString() {
-        return "Pessoa {"+ super.toString() + " Gestor{" + "dataDeCadastro=" + dataDeCadastro + '}';
+        return "Pessoa {" + super.toString() + " Gestor{" + "dataDeCadastro=" + dataDeCadastro + '}';
     }
-    
-    
-    
-    
 
 }

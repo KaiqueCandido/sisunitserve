@@ -5,11 +5,14 @@
  */
 package br.com.sisunit.embeddable;
 
+import br.com.sisunit.entity.Estado;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -20,10 +23,12 @@ import javax.persistence.Temporal;
 @Embeddable
 public class DocumentosPessoais implements Serializable {
 
-    @Column(length = 30)
-    private String orgaoEmissaoRg;
-    @Column(length = 30)
+    @Column(length = 15, unique = true)
     private String rg;
+    @Column(length = 100)
+    private String orgaoEmissaoRg;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Estado estadoDeEmissaoDoRg;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dataDeEmissaoDoRg;
@@ -33,19 +38,12 @@ public class DocumentosPessoais implements Serializable {
     public DocumentosPessoais() {
     }
 
-    public DocumentosPessoais(String orgaoEmissaoRg, String rg, Date dataDeEmissaoDoRg, String cpf) {
-        this.orgaoEmissaoRg = orgaoEmissaoRg;
+    public DocumentosPessoais(String rg, String orgaoEmissaoRg, Estado estadoDeEmissaoDoRg, Date dataDeEmissaoDoRg, String cpf) {
         this.rg = rg;
+        this.orgaoEmissaoRg = orgaoEmissaoRg;
+        this.estadoDeEmissaoDoRg = estadoDeEmissaoDoRg;
         this.dataDeEmissaoDoRg = dataDeEmissaoDoRg;
         this.cpf = cpf;
-    }
-
-    public String getOrgaoEmissaoRg() {
-        return orgaoEmissaoRg;
-    }
-
-    public void setOrgaoEmissaoRg(String orgaoEmissaoRg) {
-        this.orgaoEmissaoRg = orgaoEmissaoRg;
     }
 
     public String getRg() {
@@ -54,6 +52,22 @@ public class DocumentosPessoais implements Serializable {
 
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    public String getOrgaoEmissaoRg() {
+        return orgaoEmissaoRg;
+    }
+
+    public void setOrgaoEmissaoRg(String orgaoEmissaoRg) {
+        this.orgaoEmissaoRg = orgaoEmissaoRg.toUpperCase();
+    }
+
+    public Estado getEstadoDeEmissaoDoRg() {
+        return estadoDeEmissaoDoRg;
+    }
+
+    public void setEstadoDeEmissaoDoRg(Estado estadoDeEmissaoDoRg) {
+        this.estadoDeEmissaoDoRg = estadoDeEmissaoDoRg;
     }
 
     public Date getDataDeEmissaoDoRg() {
@@ -74,7 +88,7 @@ public class DocumentosPessoais implements Serializable {
 
     @Override
     public String toString() {
-        return "DocumentosPessoais{" + "orgaoEmissaoRg=" + orgaoEmissaoRg + ", rg=" + rg + ", dataDeEmissaoDoRg=" + dataDeEmissaoDoRg + ", cpf=" + cpf + '}';
+        return "DocumentosPessoais{" + "rg=" + rg + ", orgaoEmissaoRg=" + orgaoEmissaoRg + ", estadoDeEmissaoDoRg=" + estadoDeEmissaoDoRg + ", dataDeEmissaoDoRg=" + dataDeEmissaoDoRg + ", cpf=" + cpf + '}';
     }
 
 }

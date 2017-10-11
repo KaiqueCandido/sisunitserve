@@ -5,39 +5,22 @@
  */
 package br.com.sisunit.service;
 
-import br.com.sisunit.dao.VeiculoDao;
 import br.com.sisunit.entity.Veiculo;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author Kaique Candido kaiqueoliveira.ci@gmail.com
  */
-@Stateless
-public class VeiculoService {
+public interface VeiculoService {
 
-    @EJB
-    private VeiculoDao dao;
+    public Veiculo salvar(Veiculo veiculo);
 
-    public Veiculo salvar(Veiculo veiculo) {
-        return dao.salvar(veiculo);
-    }
+    public Veiculo atualizar(Veiculo veiculo);
 
-    public Veiculo atualizar(Veiculo veiculo) {
-        return dao.atualizar(veiculo);
-    }
+    public Veiculo excluir(Veiculo veiculo);
 
-    public Veiculo excluir(Veiculo veiculo) {
-        return dao.excluir(veiculo);
-    }
+    public Veiculo pesquisarPeloId(Object o);
 
-    public Veiculo pesquisarPeloId(Object o) {
-        return dao.pesquisarPeloId(o);
-    }
-
-    public List<Veiculo> listar() {
-        return dao.listar();
-    }
+    public List<Veiculo> listar();
 }

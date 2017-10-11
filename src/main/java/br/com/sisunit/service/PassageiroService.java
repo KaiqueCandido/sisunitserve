@@ -5,40 +5,22 @@
  */
 package br.com.sisunit.service;
 
-import br.com.sisunit.dao.PassageiroDao;
-import br.com.sisunit.entity.Conta;
 import br.com.sisunit.entity.Passageiro;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author Kaique Candido kaiqueoliveira.ci@gmail.com
  */
-@Stateless
-public class PassageiroService {
+public interface PassageiroService {
 
-    @EJB
-    private PassageiroDao dao;
+    public Passageiro salvar(Passageiro passageiro);
 
-    public Passageiro salvar(Passageiro passageiro) {
-        return dao.salvar(passageiro);
-    }
+    public Passageiro atualizar(Passageiro passageiro);
 
-    public Passageiro atualizar(Passageiro passageiro) {
-        return dao.atualizar(passageiro);
-    }
+    public Passageiro excluir(Passageiro passageiro);
 
-    public Passageiro excluir(Passageiro passageiro, Conta conta) {
-        return dao.excluir(passageiro, conta);
-    }
+    public Passageiro pesquisarPeloId(Object o);
 
-    public Passageiro pesquisarPeloId(Object o) {
-        return dao.pesquisarPeloId(o);
-    }
-
-    public List<Passageiro> listar() {
-        return dao.listar();
-    }
+    public List<Passageiro> listar();
 }

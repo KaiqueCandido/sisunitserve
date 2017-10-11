@@ -32,38 +32,38 @@ public class PontoDeParadaWebService {
     @EJB
     private PontoDeParadaService pontoDeParadaService;
 
+    @POST
+    public Response salvar(PontoDeParada pontoDeParada) {
+        PontoDeParada pdp = pontoDeParadaService.salvar(pontoDeParada);
+        return Response.ok(pdp).build();
+    }
+
+    @POST
+    @Path("remove")
+    public Response excluir(PontoDeParada pontoDeParada) {
+        PontoDeParada pdp = pontoDeParadaService.excluir(pontoDeParada);
+        return Response.ok(pdp).build();
+    }
+
+    @PUT
+    public Response atualizar(PontoDeParada pontoDeParada) {
+        PontoDeParada pdp = pontoDeParadaService.atualizar(pontoDeParada);
+        return Response.ok(pdp).build();
+    }
+
     @GET
-    public Response listPontoDeParada() {
+    @Path("{id}")
+    public Response pesquisarPorId(@PathParam(value = "id") Long id) {
+        PontoDeParada pdp = pontoDeParadaService.pesquisarPeloId(id);
+        return Response.ok(pdp).build();
+    }
+
+    @GET
+    public Response listar() {
         List<PontoDeParada> listarPontosDeParada = pontoDeParadaService.listar();
         GenericEntity<List<PontoDeParada>> pontosDeParada = new GenericEntity<List<PontoDeParada>>(listarPontosDeParada) {
         };
         return Response.ok(pontosDeParada).build();
     }
 
-    @GET
-    @Path("{idPontoDeParada}")
-    public Response getPontoDeParada(@PathParam(value = "idPontoDeParada") Long idPontoDeParada) {
-        PontoDeParada pontoDeParada = pontoDeParadaService.pesquisarPeloId(idPontoDeParada);
-        return Response.ok(pontoDeParada).build();
-    }
-
-    @POST
-    public Response addPontoDeParada(PontoDeParada pdp) {
-        PontoDeParada pontoDeParada = pontoDeParadaService.salvar(pdp);
-        return Response.ok(pontoDeParada).build();
-    }
-
-    @POST
-    @Path("{idPontoDeParada}")
-    public Response removePontoDeParada(@PathParam(value = "idPontoDeParada") Long idPontoDeParada) {
-        PontoDeParada pontoDeParadaPesquisado = pontoDeParadaService.pesquisarPeloId(idPontoDeParada);
-        PontoDeParada pontoDeParada = pontoDeParadaService.excluir(pontoDeParadaPesquisado);
-        return Response.ok(pontoDeParada).build();
-    }
-
-    @PUT
-    public Response atualizaPontoDeParada(PontoDeParada pdp) {
-        PontoDeParada pontoDeParada = pontoDeParadaService.atualizar(pdp);
-        return Response.ok(pontoDeParada).build();
-    }
 }

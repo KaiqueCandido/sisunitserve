@@ -5,12 +5,16 @@
  */
 package br.com.sisunit.embeddable;
 
+import br.com.sisunit.entity.Cidade;
+import br.com.sisunit.entity.Estado;
 import br.com.sisunit.enums.TipoDeZonaEnum;
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -23,11 +27,17 @@ public class Endereco implements Serializable {
     @Column(length = 100)
     private String logradouro;
     @Column(length = 100)
+    private String numero;
+    @Column(length = 100)
     private String bairro;
     @Column(length = 100)
     private String complemento;
     @Column(length = 30)
     private String cep;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Estado estado;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Cidade cidade;
     @Enumerated(EnumType.STRING)
     @Column(length = 30)
     private TipoDeZonaEnum tipoDeZona;
@@ -35,11 +45,14 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(String logradouro, String bairro, String complemento, String cep, TipoDeZonaEnum tipoDeZona) {
+    public Endereco(String logradouro, String numero, String bairro, String complemento, String cep, Estado estado, Cidade cidade, TipoDeZonaEnum tipoDeZona) {
         this.logradouro = logradouro;
+        this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
         this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
         this.tipoDeZona = tipoDeZona;
     }
 
@@ -49,6 +62,14 @@ public class Endereco implements Serializable {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
     public String getBairro() {
@@ -75,6 +96,22 @@ public class Endereco implements Serializable {
         this.cep = cep;
     }
 
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
     public TipoDeZonaEnum getTipoDeZona() {
         return tipoDeZona;
     }
@@ -85,7 +122,7 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return "Endereco{" + "logradouro=" + logradouro + ", bairro=" + bairro + ", complemento=" + complemento + ", cep=" + cep + ", tipoDeZona=" + tipoDeZona + '}';
+        return "Endereco{" + "logradouro=" + logradouro + ", numero=" + numero + ", bairro=" + bairro + ", complemento=" + complemento + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade + ", tipoDeZona=" + tipoDeZona + '}';
     }
 
 }

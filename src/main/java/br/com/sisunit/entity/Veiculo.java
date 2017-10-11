@@ -11,6 +11,8 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,6 +40,8 @@ public class Veiculo implements Serializable {
     private Estado estado;
     @ManyToOne(cascade = CascadeType.MERGE)
     private Cidade cidade;
+    @Enumerated(EnumType.STRING)
+    @Column(length = 15)
     private StatusDoCadastroEnum statusDoCadastro;
 
     public Veiculo() {
@@ -76,7 +80,7 @@ public class Veiculo implements Serializable {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao.toUpperCase();
     }
 
     public String getPlaca() {
@@ -84,7 +88,7 @@ public class Veiculo implements Serializable {
     }
 
     public void setPlaca(String placa) {
-        this.placa = placa;
+        this.placa = placa.toUpperCase();
     }
 
     public Integer getQtdeAssentos() {

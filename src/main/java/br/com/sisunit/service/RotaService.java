@@ -5,39 +5,22 @@
  */
 package br.com.sisunit.service;
 
-import br.com.sisunit.dao.RotaDao;
 import br.com.sisunit.entity.Rota;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author Kaique Candido kaiqueoliveira.ci@gmail.com
  */
-@Stateless
-public class RotaService {
+public interface RotaService {
 
-    @EJB
-    private RotaDao dao;
+    public Rota salvar(Rota rota);
 
-    public Rota salvar(Rota rota) {
-        return dao.salvar(rota);
-    }
+    public Rota atualizar(Rota rota);
 
-    public Rota atualizar(Rota rota) {
-        return dao.atualizar(rota);
-    }
+    public Rota excluir(Rota rota);
 
-    public Rota excluir(Rota rota) {
-        return dao.excluir(rota);
-    }
+    public Rota pesquisarPeloId(Object o);
 
-    public Rota pesquisarPeloId(Object o) {
-        return dao.pesquisarPeloId(o);
-    }
-
-    public List<Rota> listar() {
-        return dao.listar();
-    }
+    public List<Rota> listar();
 }

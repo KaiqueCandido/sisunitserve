@@ -32,38 +32,38 @@ public class PassageiroWebService {
     @EJB
     private PassageiroService passageiroService;
 
+    @POST
+    public Response salvar(Passageiro passageiro) {
+        Passageiro p = passageiroService.salvar(passageiro);
+        return Response.ok(p).build();
+    }
+
+    @POST
+    @Path("remove")
+    public Response excluir(Passageiro passageiro) {
+        Passageiro p = passageiroService.excluir(passageiro);
+        return Response.ok(p).build();
+    }
+
+    @PUT
+    public Response atualizar(Passageiro passageiro) {
+        Passageiro p = passageiroService.atualizar(passageiro);
+        return Response.ok(p).build();
+    }
+
     @GET
-    public Response listPassageiro() {
+    @Path("{id}")
+    public Response pesquisarPorId(@PathParam(value = "id") Long id) {
+        Passageiro p = passageiroService.pesquisarPeloId(id);
+        return Response.ok(p).build();
+    }
+
+    @GET
+    public Response listar() {
         List<Passageiro> listarPassageiros = passageiroService.listar();
         GenericEntity<List<Passageiro>> passageiros = new GenericEntity<List<Passageiro>>(listarPassageiros) {
         };
         return Response.ok(passageiros).build();
     }
 
-    @GET
-    @Path("{idPassageiro}")
-    public Response getPassageiro(@PathParam(value = "idPassageiro") Long idPassageiro) {
-        Passageiro passageiro = passageiroService.pesquisarPeloId(idPassageiro);
-        return Response.ok(passageiro).build();
-    }
-
-    @POST
-    public Response addPassageiro(Passageiro p) {
-        Passageiro passageiro = passageiroService.salvar(p);
-        return Response.ok(passageiro).build();
-    }
-
-//    @POST
-//    @Path("{idPassageiro}")
-//    public Response removePassageiro(@PathParam(value = "idPassageiro") Long idPassageiro) {
-//        Passageiro passageiroPesquisado = passageiroService.pesquisarPeloId(idPassageiro);
-//        Passageiro passageiro = passageiroService.excluir(passageiroPesquisado);
-//        return Response.ok(passageiro).build();
-//    }
-
-    @PUT
-    public Response atualizaPassageiro(Passageiro p) {
-        Passageiro passageiro = passageiroService.atualizar(p);
-        return Response.ok(passageiro).build();
-    }
 }

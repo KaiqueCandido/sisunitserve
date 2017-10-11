@@ -5,29 +5,20 @@
  */
 package br.com.sisunit.service;
 
-import br.com.sisunit.dao.CidadeDao;
 import br.com.sisunit.entity.Cidade;
 import java.util.List;
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 
 /**
  *
  * @author Kaique Oliveira
  * @Email kaiqueoliveira.ci@gmail.com
  */
-@Stateless
-public class CidadeService {
+public interface CidadeService {
+    
+    public Cidade pesquisarPorCodIbge(Long codibge);
 
-    @EJB
-    private CidadeDao dao;
+    public List<Cidade> listar();
 
-    public List<Cidade> listar() {
-        return dao.listar();
-    }
-
-    public List<Cidade> listarPorEstado(Long idEstado) {
-        return dao.listarPorEstado(idEstado);
-    }
+    public List<Cidade> listarPorEstado(String uf);
 
 }

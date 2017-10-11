@@ -6,21 +6,15 @@
 package br.com.sisunit.entity;
 
 import br.com.sisunit.enums.StatusDoCadastroEnum;
-import br.com.sisunit.exeption.PermissaoException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -42,19 +36,15 @@ public class Conta implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private StatusDoCadastroEnum statusDoCadastro;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Permissao> permissoes;
 
     public Conta() {
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
-        this.permissoes = new ArrayList<>();
     }
 
     public Conta(String login, String senha) {
         this.login = login;
         this.senha = senha;
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
-        this.permissoes = new ArrayList<>();
     }
 
     public Conta(Long id, String login, String senha) {
@@ -62,7 +52,6 @@ public class Conta implements Serializable {
         this.login = login;
         this.senha = senha;
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
-        this.permissoes = new ArrayList<>();
     }
 
     public Long getId() {
@@ -97,34 +86,6 @@ public class Conta implements Serializable {
         this.statusDoCadastro = statusDoCadastro;
     }
 
-    public List<Permissao> getPermissoes() {
-        return permissoes;
-    }
-
-    public void setPermissoes(List<Permissao> permissoes) {
-        this.permissoes = permissoes;
-    }
-
-    public boolean isExistePermissao(Permissao permissao) {
-        return getPermissoes().contains(permissao);
-    }
-
-    public void adicionarPermissao(Permissao permissao) throws PermissaoException {
-        if (!isExistePermissao(permissao)) {
-            getPermissoes().add(permissao);
-        } else {
-            throw new PermissaoException(permissao, "Essa permissão já consta para esta conta");
-        }
-    }
-
-    public void removerPermissao(Permissao permissao) throws PermissaoException {
-        if (isExistePermissao(permissao)) {
-            getPermissoes().remove(permissao);
-        } else {
-            throw new PermissaoException(permissao, "Essa permissão não consta para esta conta");
-        }
-    }
-
     @Override
     public int hashCode() {
         int hash = 5;
@@ -149,7 +110,7 @@ public class Conta implements Serializable {
 
     @Override
     public String toString() {
-        return "Conta{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", statusDoCadastro=" + statusDoCadastro + ", permissoes=" + permissoes + '}';
+        return "Conta{" + "id=" + id + ", login=" + login + ", senha=" + senha + ", statusDoCadastro=" + statusDoCadastro + '}';
     }
 
 }

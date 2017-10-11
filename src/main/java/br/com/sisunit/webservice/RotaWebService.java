@@ -32,38 +32,38 @@ public class RotaWebService {
     @EJB
     private RotaService rotaService;
 
+    @POST
+    public Response salvar(Rota rota) {
+        Rota r = rotaService.salvar(rota);
+        return Response.ok(r).build();
+    }
+
+    @POST
+    @Path("remove")
+    public Response excluir(Rota rota) {
+        Rota r = rotaService.excluir(rota);
+        return Response.ok(r).build();
+    }
+
+    @PUT
+    public Response atualizar(Rota rota) {
+        Rota r = rotaService.atualizar(rota);
+        return Response.ok(r).build();
+    }
+
     @GET
-    public Response listRotas() {
+    @Path("{id}")
+    public Response pesquisarPorId(@PathParam(value = "id") Long id) {
+        Rota r = rotaService.pesquisarPeloId(id);
+        return Response.ok(r).build();
+    }
+
+    @GET
+    public Response listar() {
         List<Rota> listarRotas = rotaService.listar();
         GenericEntity<List<Rota>> rotas = new GenericEntity<List<Rota>>(listarRotas) {
         };
         return Response.ok(rotas).build();
     }
 
-    @GET
-    @Path("{idRota}")
-    public Response getRota(@PathParam(value = "idRota") Long idRota) {
-        Rota rota = rotaService.pesquisarPeloId(idRota);
-        return Response.ok(rota).build();
-    }
-
-    @POST
-    public Response addRota(Rota r) {
-        Rota rota = rotaService.salvar(r);
-        return Response.ok(rota).build();
-    }
-
-    @POST
-    @Path("{idRota}")
-    public Response removeRota(@PathParam(value = "idRota") Long idRota) {
-        Rota rotaPesquisada = rotaService.pesquisarPeloId(idRota);
-        Rota rota = rotaService.excluir(rotaPesquisada);
-        return Response.ok(rota).build();
-    }
-
-    @PUT
-    public Response atualizaRota(Rota r) {
-        Rota rota = rotaService.atualizar(r);
-        return Response.ok(rota).build();
-    }
 }

@@ -27,16 +27,23 @@ public class CidadeDao {
     private EntityManager em;
     private CriteriaQuery<Cidade> query;
 
+    public Cidade pesquisarPorCodIbge(Long codibge) {
+        Root<Cidade> c = query.from(Cidade.class);
+        query.where(em.getCriteriaBuilder().equal(c.get(Cidade_.codigoMunicipio), codibge));
+        query.distinct(true);
+        return em.createQuery(query).getSingleResult();
+    }
+
     public List<Cidade> listar() {
         Root<Cidade> c = query.from(Cidade.class);
         query.orderBy(em.getCriteriaBuilder().asc(c.get(Cidade_.nome)));
         return em.createQuery(query).getResultList();
     }
 
-    public List<Cidade> listarPorEstado(Long idEstado) {
+    public List<Cidade> listarPorEstado(String uf) {
         Root<Cidade> c = query.from(Cidade.class);
-        query.where(em.getCriteriaBuilder().equal(c.get(Cidade_.idEstado), idEstado));
-        query.orderBy(em.getCriteriaBuilder().asc(c.get(Cidade_.nome)));
+        query.where(em.getCriteriaBuilder().equal(c.get(Cidade_.uf), uf));
+        query.distinct(true);
         return em.createQuery(query).getResultList();
     }
 
@@ -44,4 +51,5 @@ public class CidadeDao {
     public void instanceCriteria() {
         this.query = em.getCriteriaBuilder().createQuery(Cidade.class);
     }
+
 }

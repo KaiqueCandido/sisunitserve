@@ -9,12 +9,9 @@ import br.com.sisunit.embeddable.Endereco;
 import br.com.sisunit.embeddable.Contato;
 import br.com.sisunit.embeddable.DocumentosPessoais;
 import br.com.sisunit.enums.SexoEnum;
-import br.com.sisunit.exeption.ContaException;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,13 +19,12 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 
@@ -55,8 +51,8 @@ public class Pessoa implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(length = 20)
     private SexoEnum sexo;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Conta> contas;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Conta conta;
     @Embedded
     private DocumentosPessoais documentosPessoais;
     @Embedded
@@ -65,30 +61,29 @@ public class Pessoa implements Serializable {
     private Endereco endereco;
 
     public Pessoa() {
-        this.contas = new ArrayList<>();
     }
 
-    public Pessoa(String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+    public Pessoa(String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataDeNascimento = dataDeNascimento;
         this.sexo = sexo;
+        this.conta = conta;
         this.documentosPessoais = documentosPessoais;
         this.contato = contato;
         this.endereco = endereco;
-        this.contas = new ArrayList<>();
     }
 
-    public Pessoa(Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
+    public Pessoa(Long id, String nome, String sobrenome, Date dataDeNascimento, SexoEnum sexo, Conta conta, DocumentosPessoais documentosPessoais, Contato contato, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataDeNascimento = dataDeNascimento;
         this.sexo = sexo;
+        this.conta = conta;
         this.documentosPessoais = documentosPessoais;
         this.contato = contato;
         this.endereco = endereco;
-        this.contas = new ArrayList<>();
     }
 
     public Long getId() {
@@ -131,12 +126,12 @@ public class Pessoa implements Serializable {
         this.sexo = sexo;
     }
 
-    public List<Conta> getContas() {
-        return contas;
+    public Conta getConta() {
+        return conta;
     }
 
-    public void setContas(List<Conta> contas) {
-        this.contas = contas;
+    public void setConta(Conta conta) {
+        this.conta = conta;
     }
 
     public DocumentosPessoais getDocumentosPessoais() {
@@ -163,26 +158,6 @@ public class Pessoa implements Serializable {
         this.endereco = endereco;
     }
 
-    public boolean isExisteConta(Conta conta) {
-        return getContas().contains(conta);
-    }
-
-    public void adicionarConta(Conta conta) throws ContaException {
-        if (!isExisteConta(conta)) {
-            getContas().add(conta);
-        } else {
-            throw new ContaException(conta, "Esta conta já existe para essa pessoa");
-        }
-    }
-
-    public void removerConta(Conta conta) throws ContaException {
-        if (isExisteConta(conta)) {
-            getContas().remove(conta);
-        } else {
-            throw new ContaException(conta, "Esta conta não existe para essa pessoa");
-        }
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -207,7 +182,7 @@ public class Pessoa implements Serializable {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", dataDeNascimento=" + dataDeNascimento + ", sexo=" + sexo + ", documentosPessoais=" + documentosPessoais + ", contato=" + contato + ", endereco=" + endereco + '}';
+        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", dataDeNascimento=" + dataDeNascimento + ", sexo=" + sexo + ", conta=" + conta + ", documentosPessoais=" + documentosPessoais + ", contato=" + contato + ", endereco=" + endereco + '}';
     }
 
 }
