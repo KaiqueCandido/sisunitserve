@@ -6,7 +6,6 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.Veiculo;
-import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -32,8 +31,8 @@ public class VeiculoDao {
     }
 
     public Veiculo excluir(Veiculo veiculo) {
-        veiculo.setStatusDoCadastro(StatusDoCadastroEnum.INATIVO);
-        return atualizar(veiculo);
+        em.remove(veiculo);
+        return veiculo;
     }
 
     public Veiculo atualizar(Veiculo veiculo) {

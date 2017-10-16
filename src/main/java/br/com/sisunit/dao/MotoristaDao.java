@@ -6,15 +6,12 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.Motorista;
-import br.com.sisunit.entity.Motorista_;
-import br.com.sisunit.entity.Pessoa_;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
 /**
  *

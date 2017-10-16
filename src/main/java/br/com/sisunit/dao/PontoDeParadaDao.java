@@ -6,7 +6,6 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.PontoDeParada;
-import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -32,8 +31,8 @@ public class PontoDeParadaDao {
     }
 
     public PontoDeParada excluir(PontoDeParada pontoDeParada) {
-        pontoDeParada.setStatusDoCadastro(StatusDoCadastroEnum.INATIVO);
-        return atualizar(pontoDeParada);
+        em.remove(pontoDeParada);
+        return pontoDeParada;
     }
 
     public PontoDeParada atualizar(PontoDeParada pontoDeParada) {

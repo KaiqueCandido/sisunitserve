@@ -6,7 +6,6 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.Rota;
-import br.com.sisunit.enums.StatusDoCadastroEnum;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
@@ -32,8 +31,8 @@ public class RotaDao {
     }
 
     public Rota excluir(Rota rota) {
-        rota.setStatus(StatusDoCadastroEnum.INATIVO);
-        return atualizar(rota);
+        em.remove(rota);
+        return rota;
     }
 
     public Rota atualizar(Rota rota) {

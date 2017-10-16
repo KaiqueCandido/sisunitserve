@@ -41,13 +41,15 @@ public class Rota implements Serializable {
     private Long id;
     @Column(length = 150)
     private String descricao;
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Cronograma cronograma;
     @Column(length = 15)
     @Enumerated(EnumType.STRING)
-    private StatusDoCadastroEnum status;
+    private StatusDoCadastroEnum statusDoCadastro;
     @ManyToOne
     private Veiculo veiculo;
     @OneToOne(cascade = CascadeType.MERGE)
-    private Cronograma cronograma;
+    private Motorista motorista;
     @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<Passageiro> passageiros;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
@@ -56,28 +58,30 @@ public class Rota implements Serializable {
     private List<Passageiro> passageirosConfirmados;
 
     public Rota() {
-        this.status = StatusDoCadastroEnum.ATIVO;
+        this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
         this.pontosDeParada = new ArrayList<>();
         this.passageirosConfirmados = new ArrayList<>();
     }
 
-    public Rota(String descricao, Veiculo veiculo, Cronograma cronograma) {
+    public Rota(String descricao, Veiculo veiculo, Motorista motorista, Cronograma cronograma) {
         this.descricao = descricao;
         this.veiculo = veiculo;
+        this.motorista = motorista;
         this.cronograma = cronograma;
-        this.status = StatusDoCadastroEnum.ATIVO;
+        this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
         this.pontosDeParada = new ArrayList<>();
         this.passageirosConfirmados = new ArrayList<>();
     }
 
-    public Rota(Long id, String descricao, Veiculo veiculo, Cronograma cronograma) {
+    public Rota(Long id, String descricao, Veiculo veiculo, Motorista motorista, Cronograma cronograma) {
         this.id = id;
         this.descricao = descricao;
         this.veiculo = veiculo;
+        this.motorista = motorista;
         this.cronograma = cronograma;
-        this.status = StatusDoCadastroEnum.ATIVO;
+        this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
         this.pontosDeParada = new ArrayList<>();
         this.passageirosConfirmados = new ArrayList<>();
@@ -99,12 +103,12 @@ public class Rota implements Serializable {
         this.descricao = descricao;
     }
 
-    public StatusDoCadastroEnum getStatus() {
-        return status;
+    public StatusDoCadastroEnum getStatusDoCadastro() {
+        return statusDoCadastro;
     }
 
-    public void setStatus(StatusDoCadastroEnum status) {
-        this.status = status;
+    public void setStatusDoCadastro(StatusDoCadastroEnum statusDoCadastro) {
+        this.statusDoCadastro = statusDoCadastro;
     }
 
     public Veiculo getVeiculo() {
@@ -113,6 +117,14 @@ public class Rota implements Serializable {
 
     public void setVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
     public Cronograma getCronograma() {
@@ -231,7 +243,7 @@ public class Rota implements Serializable {
 
     @Override
     public String toString() {
-        return "Rota{" + "id=" + id + ", descricao=" + descricao + ", status=" + status + ", veiculo=" + veiculo + ", cronograma=" + cronograma + ", passageiros=" + passageiros + ", pontosDeParada=" + pontosDeParada + ", passageirosConfirmados=" + passageirosConfirmados + '}';
+        return "Rota{" + "id=" + id + ", descricao=" + descricao + ", statusDoCadastro=" + statusDoCadastro + ", veiculo=" + veiculo + ", motorista=" + motorista + ", cronograma=" + cronograma + ", passageiros=" + passageiros + ", pontosDeParada=" + pontosDeParada + ", passageirosConfirmados=" + passageirosConfirmados + '}';
     }
 
 }
