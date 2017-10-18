@@ -41,7 +41,7 @@ public class Rota implements Serializable {
     private Long id;
     @Column(length = 150)
     private String descricao;
-    @OneToOne(cascade = CascadeType.MERGE)
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private Cronograma cronograma;
     @Column(length = 15)
     @Enumerated(EnumType.STRING)

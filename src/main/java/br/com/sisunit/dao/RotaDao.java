@@ -6,12 +6,15 @@
 package br.com.sisunit.dao;
 
 import br.com.sisunit.entity.Rota;
+import br.com.sisunit.entity.Rota_;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -45,7 +48,14 @@ public class RotaDao {
     }
 
     public List<Rota> listar() {
-        return em.createQuery(query).getResultList();
+        this.query = em.getCriteriaBuilder().createQuery(Rota.class);
+        Root<Rota> r = query.from(Rota.class);
+        r.fetch(Rota_.passageiros, JoinType.LEFT);
+        r.fetch(Rota_.passageirosConfirmados, JoinType.LEFT);
+        r.fetch(Rota_.pontosDeParada, JoinType.LEFT);
+        query.select(r).distinct(true);
+        List<Rota> resultList = em.createQuery(query).getResultList();
+        return resultList;
     }
 
     @PostConstruct
