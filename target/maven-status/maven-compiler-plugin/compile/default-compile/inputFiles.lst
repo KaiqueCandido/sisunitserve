@@ -2,6 +2,7 @@ E:\sisunitserve\src\main\java\br\com\sisunit\dao\PontoDeParadaDao.java
 E:\sisunitserve\src\main\java\br\com\sisunit\serviceimpl\MotoristaServiceImpl.java
 E:\sisunitserve\src\main\java\br\com\sisunit\webservice\CronogramaWebService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\exeption\LoginException.java
+E:\sisunitserve\src\main\java\br\com\sisunit\objectvalue\ObjectValidateVo.java
 E:\sisunitserve\src\main\java\br\com\sisunit\serviceimpl\PassageiroServiceImpl.java
 E:\sisunitserve\src\main\java\br\com\sisunit\service\CidadeService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\service\VeiculoService.java
@@ -24,6 +25,7 @@ E:\sisunitserve\src\main\java\br\com\sisunit\webservice\EnumWebService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\entity\Rota.java
 E:\sisunitserve\src\main\java\br\com\sisunit\entity\Veiculo.java
 E:\sisunitserve\src\main\java\br\com\sisunit\webservice\CidadeWebService.java
+E:\sisunitserve\src\main\java\br\com\sisunit\serviceimpl\ValidatorServiceImpl.java
 E:\sisunitserve\src\main\java\br\com\sisunit\serviceimpl\VeiculoServiceImpl.java
 E:\sisunitserve\src\main\java\br\com\sisunit\webservice\MotoristaWebService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\entity\PontoDeParada.java
@@ -54,9 +56,12 @@ E:\sisunitserve\src\main\java\org\netbeans\rest\application\config\ApplicationCo
 E:\sisunitserve\src\main\java\br\com\sisunit\embeddable\DocumentosPessoais.java
 E:\sisunitserve\src\main\java\br\com\sisunit\service\PontoDeParadaService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\exeption\PontoDeParadaException.java
+E:\sisunitserve\src\main\java\br\com\sisunit\dao\ValidatorDao.java
 E:\sisunitserve\src\main\java\br\com\sisunit\dao\MotoristaDao.java
 E:\sisunitserve\src\main\java\br\com\sisunit\enums\DiasDaSemanaEnum.java
+E:\sisunitserve\src\main\java\br\com\sisunit\webservice\ValidatorWebService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\webservice\RotaWebService.java
+E:\sisunitserve\src\main\java\br\com\sisunit\service\ValidatorService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\service\GestorService.java
 E:\sisunitserve\src\main\java\br\com\sisunit\entity\Pessoa.java
 E:\sisunitserve\src\main\java\br\com\sisunit\enums\TurnoEnum.java
