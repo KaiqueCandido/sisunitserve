@@ -15,13 +15,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ObjectValidateVo {
 
+    private Long id;
     private String value;
 
     public ObjectValidateVo() {
     }
 
-    public ObjectValidateVo(String value) {
+    public ObjectValidateVo(Long id, String value) {
+        this.id = id;
         this.value = value;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getValue() {

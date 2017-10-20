@@ -5,6 +5,8 @@
  */
 package br.com.sisunit.service;
 
+import br.com.sisunit.objectvalue.ObjectValidateVo;
+
 /**
  *
  * @author Kaique Oliveira
@@ -12,12 +14,12 @@ package br.com.sisunit.service;
  */
 public interface ValidatorService {
 
-    public boolean validateRg(String value);
+    public boolean validateRg(ObjectValidateVo ovv);
 
-    public boolean validateCpf(String value);
+    public boolean validateCpf(ObjectValidateVo ovv);
 
-    public boolean validateEmail(String value);
+    public boolean validateEmail(ObjectValidateVo ovv);
 
-    public boolean validateLogin(String value);
+    public boolean validateLogin(ObjectValidateVo ovv);
 
 }

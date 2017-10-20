@@ -31,7 +31,7 @@ public class ValidatorWebService {
     @POST
     @Path("rg")
     public Response validateRg(ObjectValidateVo ovv) {
-        if (validatorService.validateRg(ovv.getValue())) {
+        if (validatorService.validateRg(ovv)) {
             return Response.ok().build();
         } else {
             return Response.status(Status.NOT_ACCEPTABLE).build();
@@ -41,7 +41,7 @@ public class ValidatorWebService {
     @POST
     @Path("cpf")
     public Response validateCpf(ObjectValidateVo ovv) {
-        if (validatorService.validateCpf(ovv.getValue())) {
+        if (validatorService.validateCpf(ovv)) {
             return Response.ok().build();
         } else {
             return Response.status(Status.NOT_ACCEPTABLE).build();
@@ -51,7 +51,7 @@ public class ValidatorWebService {
     @POST
     @Path("email")
     public Response validateEmail(ObjectValidateVo ovv) {
-        if (validatorService.validateEmail(ovv.getValue())) {
+        if (validatorService.validateEmail(ovv)) {
             return Response.ok().build();
         } else {
             return Response.status(Status.NOT_ACCEPTABLE).build();
@@ -61,7 +61,7 @@ public class ValidatorWebService {
     @POST
     @Path("login")
     public Response validateLogin(ObjectValidateVo ovv) {
-        if (validatorService.validateLogin(ovv.getValue())) {
+        if (validatorService.validateLogin(ovv)) {
             return Response.ok().build();
         } else {
             return Response.status(Status.NOT_ACCEPTABLE).build();

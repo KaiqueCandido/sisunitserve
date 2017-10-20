@@ -6,6 +6,8 @@
 package br.com.sisunit.serviceimpl;
 
 import br.com.sisunit.dao.ValidatorDao;
+import br.com.sisunit.objectvalue.ObjectValidateVo;
+import br.com.sisunit.service.MotoristaService;
 import br.com.sisunit.service.ValidatorService;
 import javax.ejb.EJB;
 import javax.ejb.Remote;
@@ -22,28 +24,59 @@ public class ValidatorServiceImpl implements ValidatorService {
 
     @EJB
     private ValidatorDao dao;
+    @EJB
+    private MotoristaService motoristaService;
 
     @Override
-    public boolean validateRg(String value) {
-        return dao.validateRg(value);
+    public boolean validateRg(ObjectValidateVo ovv) {
+        if (ovv.getId() != 0) {
+            if (!motoristaService.pesquisarPeloId(ovv.getId()).getDocumentosPessoais().getRg().equals(ovv.getValue())) {
+                return dao.validateRg(ovv.getValue());
+            } else {
+                return true;
+            }
+        } else {
+            return dao.validateRg(ovv.getValue());
+        }
     }
 
     @Override
-    public boolean validateCpf(String value) {
-        return dao.validateCpf(value);
+    public boolean validateCpf(ObjectValidateVo ovv) {
+        if (ovv.getId() != 0) {
+            if (!motoristaService.pesquisarPeloId(ovv.getId()).getDocumentosPessoais().getCpf().equals(ovv.getValue())) {
+                return dao.validateCpf(ovv.getValue());
+            } else {
+                return true;
+            }
+        } else {
+            return dao.validateCpf(ovv.getValue());
+        }
     }
 
     @Override
-    public boolean validateEmail(String value) {
-        return dao.validateEmail(value);
+    public boolean validateEmail(ObjectValidateVo ovv) {
+        if (ovv.getId() != 0) {
+            if (!motoristaService.pesquisarPeloId(ovv.getId()).getContato().getEmail().equals(ovv.getValue())) {
+                return dao.validateEmail(ovv.getValue());
+            } else {
+                return true;
+            }
+        } else {
+            return dao.validateEmail(ovv.getValue());
+        }
     }
 
     @Override
-    public boolean validateLogin(String value) {
-        return dao.validateLogin(value);
+    public boolean validateLogin(ObjectValidateVo ovv) {
+        if (ovv.getId() != 0) {
+            if (!motoristaService.pesquisarPeloId(ovv.getId()).getConta().getLogin().equals(ovv.getValue())) {
+                return dao.validateLogin(ovv.getValue());
+            } else {
+                return true;
+            }
+        } else {
+            return dao.validateLogin(ovv.getValue());
+        }
     }
-
- 
-
 
 }
