@@ -43,6 +43,7 @@ public class ApplicationConfig extends Application {
         resources.add(br.com.sisunit.webservice.PassageiroWebService.class);
         resources.add(br.com.sisunit.webservice.PontoDeParadaWebService.class);
         resources.add(br.com.sisunit.webservice.RotaWebService.class);
+        resources.add(br.com.sisunit.webservice.ValidatorWebService.class);
         resources.add(br.com.sisunit.webservice.VeiculoWebService.class);
     }
 

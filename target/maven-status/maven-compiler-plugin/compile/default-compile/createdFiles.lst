@@ -21,6 +21,7 @@ br\com\sisunit\dao\EstadoDao.class
 br\com\sisunit\exeption\ContaException.class
 br\com\sisunit\service\MotoristaService.class
 br\com\sisunit\webservice\EnumWebService$1.class
+br\com\sisunit\dao\ValidatorDao.class
 br\com\sisunit\dao\PassageiroDao.class
 br\com\sisunit\serviceimpl\MotoristaServiceImpl.class
 br\com\sisunit\service\ContaService.class
@@ -33,6 +34,7 @@ br\com\sisunit\service\VeiculoService.class
 br\com\sisunit\entity\Gestor_.class
 br\com\sisunit\webservice\CronogramaWebService.class
 br\com\sisunit\webservice\CidadeWebService.class
+br\com\sisunit\objectvalue\ObjectValidateVo.class
 br\com\sisunit\webservice\EnumWebService.class
 br\com\sisunit\webservice\MotoristaWebService$1.class
 br\com\sisunit\webservice\EstadoWebService.class
@@ -57,12 +59,14 @@ br\com\sisunit\entity\Passageiro.class
 br\com\sisunit\serviceimpl\PontoDeParadaServiceImpl.class
 br\com\sisunit\webservice\PontoDeParadaWebService.class
 br\com\sisunit\dao\RotaDao.class
+br\com\sisunit\serviceimpl\ValidatorServiceImpl.class
 br\com\sisunit\serviceimpl\GestorServiceImpl.class
 br\com\sisunit\corsfilter\CorsFilter.class
 br\com\sisunit\entity\PontoDeParada_.class
 br\com\sisunit\entity\Pessoa.class
 br\com\sisunit\dao\VeiculoDao.class
 br\com\sisunit\embeddable\Endereco_.class
+br\com\sisunit\service\ValidatorService.class
 br\com\sisunit\enums\TurnoEnum.class
 br\com\sisunit\webservice\VeiculoWebService.class
 br\com\sisunit\service\GestorService.class
@@ -83,6 +87,7 @@ br\com\sisunit\webservice\EnumWebService$4.class
 br\com\sisunit\dao\MotoristaDao.class
 br\com\sisunit\entity\Veiculo_.class
 br\com\sisunit\webservice\ContaWebService$1.class
+br\com\sisunit\webservice\ValidatorWebService.class
 br\com\sisunit\webservice\CidadeWebService$2.class
 br\com\sisunit\dao\PontoDeParadaDao.class
 br\com\sisunit\enums\SexoEnum.class
