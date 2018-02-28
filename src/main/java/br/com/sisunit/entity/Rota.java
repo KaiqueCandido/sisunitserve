@@ -26,6 +26,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  *
@@ -54,14 +55,11 @@ public class Rota implements Serializable {
     private List<Passageiro> passageiros;
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private List<PontoDeParada> pontosDeParada;
-    @OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    private List<Passageiro> passageirosConfirmados;
 
     public Rota() {
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
         this.pontosDeParada = new ArrayList<>();
-        this.passageirosConfirmados = new ArrayList<>();
     }
 
     public Rota(String descricao, Veiculo veiculo, Motorista motorista, Cronograma cronograma) {
@@ -72,7 +70,6 @@ public class Rota implements Serializable {
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
         this.pontosDeParada = new ArrayList<>();
-        this.passageirosConfirmados = new ArrayList<>();
     }
 
     public Rota(Long id, String descricao, Veiculo veiculo, Motorista motorista, Cronograma cronograma) {
@@ -83,8 +80,7 @@ public class Rota implements Serializable {
         this.cronograma = cronograma;
         this.statusDoCadastro = StatusDoCadastroEnum.ATIVO;
         this.passageiros = new ArrayList<>();
-        this.pontosDeParada = new ArrayList<>();
-        this.passageirosConfirmados = new ArrayList<>();
+        this.pontosDeParada = new ArrayList<>();        
     }
 
     public Long getId() {
@@ -150,26 +146,14 @@ public class Rota implements Serializable {
     public void setPontosDeParada(List<PontoDeParada> pontosDeParada) {
         this.pontosDeParada = pontosDeParada;
     }
-
-    public List<Passageiro> getPassageirosConfirmados() {
-        return passageirosConfirmados;
-    }
-
-    public void setPassageirosConfirmados(List<Passageiro> passageirosConfirmados) {
-        this.passageirosConfirmados = passageirosConfirmados;
-    }
-
+    
     public boolean isExistePassageiro(Passageiro passageiro) {
         return getPassageiros().contains(passageiro);
     }
 
     public boolean isExistePontoDeParada(PontoDeParada pontoDeParada) {
         return getPontosDeParada().contains(pontoDeParada);
-    }
-
-    public boolean isExistePassageiroConfirmado(Passageiro passageiro) {
-        return getPassageirosConfirmados().contains(passageiro);
-    }
+    }    
 
     public void adicionarPassageiro(Passageiro passageiro) throws PassageiroException {
         if (!isExistePassageiro(passageiro)) {
@@ -203,22 +187,6 @@ public class Rota implements Serializable {
         }
     }
 
-    public void adicionarPassageiroConfirmado(Passageiro passageiro) throws PassageiroException {
-        if (!isExistePassageiroConfirmado(passageiro)) {
-            getPassageirosConfirmados().add(passageiro);
-        } else {
-            throw new PassageiroException(passageiro, "Este passageiro já esta confirmado para essa rota!");
-        }
-    }
-
-    public void removerPassageiroConfirmado(Passageiro passageiro) throws PassageiroException {
-        if (isExistePassageiroConfirmado(passageiro)) {
-            getPassageirosConfirmados().remove(passageiro);
-        } else {
-            throw new PassageiroException(passageiro, "Este passageiro não esta confirmado para essa rota!");
-        }
-    }
-
     @Override
     public int hashCode() {
         int hash = 7;
@@ -243,7 +211,7 @@ public class Rota implements Serializable {
 
     @Override
     public String toString() {
-        return "Rota{" + "id=" + id + ", descricao=" + descricao + ", statusDoCadastro=" + statusDoCadastro + ", veiculo=" + veiculo + ", motorista=" + motorista + ", cronograma=" + cronograma + ", passageiros=" + passageiros + ", pontosDeParada=" + pontosDeParada + ", passageirosConfirmados=" + passageirosConfirmados + '}';
+        return "Rota{" + "id=" + id + ", descricao=" + descricao + ", statusDoCadastro=" + statusDoCadastro + ", veiculo=" + veiculo + ", motorista=" + motorista + ", cronograma=" + cronograma + ", passageiros=" + passageiros + ", pontosDeParada=" + pontosDeParada + '}';
     }
 
 }

@@ -16,6 +16,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -66,4 +69,29 @@ public class RotaWebService {
         return Response.ok(rotas).build();
     }
 
+    @POST
+    @Path("passageiro/{idPassageiro}/rota/{idRota}")
+    public Response associarPassageiroAhRota(
+            @PathParam(value = "idPassageiro") Long idPassageiro,
+            @PathParam(value = "idRota") Long idRota) {
+        Rota rota = rotaService.associarPassageiroAhRota(idPassageiro, idRota);
+
+        if (rota != null) {
+            return Response.ok(rota).build();
+        } else {
+            return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+        }
+    }
+    
+    @POST
+    @Path("motorista/{idMotorista}")
+    public Response listarPorMotorista(@PathParam(value = "idMotorista") Long idMotorista) {
+        
+        List<Rota> lstRotas = rotaService.listarPorMotorista(idMotorista);
+
+        GenericEntity<List<Rota>> rotas = new GenericEntity<List<Rota>>(lstRotas) {
+        };
+        return Response.ok(rotas).build();
+    }
+    
 }

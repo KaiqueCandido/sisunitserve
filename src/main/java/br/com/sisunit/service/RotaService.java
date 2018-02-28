@@ -23,4 +23,8 @@ public interface RotaService {
     public Rota pesquisarPeloId(Object o);
 
     public List<Rota> listar();
+    
+    public Rota associarPassageiroAhRota(Long idPassageiro, Long idRota);
+    
+    public List<Rota> listarPorMotorista(Long idMotorista);
 }

@@ -11,7 +11,7 @@ import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2017-10-18T14:27:08")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2018-02-04T09:37:10")
 @StaticMetamodel(Rota.class)
 public class Rota_ { 
 
@@ -19,7 +19,6 @@ public class Rota_ {
     public static volatile SingularAttribute<Rota, Cronograma> cronograma;
     public static volatile SingularAttribute<Rota, StatusDoCadastroEnum> statusDoCadastro;
     public static volatile SingularAttribute<Rota, Motorista> motorista;
-    public static volatile ListAttribute<Rota, Passageiro> passageirosConfirmados;
     public static volatile SingularAttribute<Rota, Long> id;
     public static volatile ListAttribute<Rota, Passageiro> passageiros;
     public static volatile ListAttribute<Rota, PontoDeParada> pontosDeParada;

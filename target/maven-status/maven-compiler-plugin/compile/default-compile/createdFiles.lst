@@ -40,6 +40,7 @@ br\com\sisunit\entity\Cidade_.class
 br\com\sisunit\entity\Estado.class
 br\com\sisunit\entity\Pessoa_.class
 br\com\sisunit\serviceimpl\RotaServiceImpl.class
+br\com\sisunit\webservice\RotaWebService$2.class
 br\com\sisunit\entity\Conta.class
 org\netbeans\rest\application\config\ApplicationConfig.class
 br\com\sisunit\entity\Estado_.class
