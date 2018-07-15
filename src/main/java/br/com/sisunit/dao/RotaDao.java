@@ -5,7 +5,6 @@
  */
 package br.com.sisunit.dao;
 
-import br.com.sisunit.entity.Motorista;
 import br.com.sisunit.entity.Motorista_;
 import br.com.sisunit.entity.Rota;
 import br.com.sisunit.entity.Rota_;
@@ -16,10 +15,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
 import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Subquery;
 
 /**
  *
@@ -33,31 +30,26 @@ public class RotaDao {
     private EntityManager em;
     private CriteriaQuery<Rota> query;
 
-    public Rota salvar(Rota rota) {
-        
+    public Rota salvar(Rota rota) {        
         em.persist(rota);
         return rota;
     }
 
     public Rota excluir(Rota rota) {
-        
         em.remove(rota);
         return rota;
     }
 
-    public Rota atualizar(Rota rota) {
-        
+    public Rota atualizar(Rota rota) {        
         em.merge(rota);
         return rota;
     }
 
-    public Rota pesquisarPeloId(Object o) {
-        
+    public Rota pesquisarPeloId(Object o) {        
         return em.find(Rota.class, o);
     }
 
-    public List<Rota> listar() {
-        
+    public List<Rota> listar() {        
         this.query = em.getCriteriaBuilder().createQuery(Rota.class);
         Root<Rota> r = query.from(Rota.class);
         r.fetch(Rota_.passageiros, JoinType.LEFT);        
@@ -67,8 +59,7 @@ public class RotaDao {
         return resultList;
     }
     
-    public List<Rota> listarPorMotorista(Object o) {
-        
+    public List<Rota> listarPorMotorista(Object o) {        
         CriteriaBuilder cb = em.getCriteriaBuilder();
         this.query = cb.createQuery(Rota.class);                
         Root<Rota> root = query.from(Rota.class);                                
@@ -81,8 +72,7 @@ public class RotaDao {
     }
 
     @PostConstruct
-    public void instanceCriteria() {
-        
+    public void instanceCriteria() {        
         this.query = em.getCriteriaBuilder().createQuery(Rota.class);
     }
 

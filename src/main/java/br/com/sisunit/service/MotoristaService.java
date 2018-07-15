@@ -6,6 +6,7 @@
 package br.com.sisunit.service;
 
 import br.com.sisunit.entity.Motorista;
+import br.com.sisunit.objectvalue.MotoristaLocalizacaoVO;
 import java.util.List;
 
 /**
@@ -23,4 +24,6 @@ public interface MotoristaService {
     public Motorista pesquisarPeloId(Object o);
 
     public List<Motorista> listar();
+
+    public MotoristaLocalizacaoVO notificarPassageiros(MotoristaLocalizacaoVO mlvo);
 }

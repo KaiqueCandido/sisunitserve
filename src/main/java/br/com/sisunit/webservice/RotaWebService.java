@@ -83,7 +83,7 @@ public class RotaWebService {
         }
     }
     
-    @POST
+    @GET
     @Path("motorista/{idMotorista}")
     public Response listarPorMotorista(@PathParam(value = "idMotorista") Long idMotorista) {
         

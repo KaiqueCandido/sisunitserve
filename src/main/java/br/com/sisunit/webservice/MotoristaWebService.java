@@ -6,6 +6,7 @@
 package br.com.sisunit.webservice;
 
 import br.com.sisunit.entity.Motorista;
+import br.com.sisunit.objectvalue.MotoristaLocalizacaoVO;
 import br.com.sisunit.service.MotoristaService;
 import java.util.List;
 import javax.ejb.EJB;
@@ -65,5 +66,12 @@ public class MotoristaWebService {
         };
         return Response.ok(motoristas).build();
     }
-
+    
+    @POST
+    @Path("localizacaoAtual")
+    public Response receberLocalizacaoAtual(MotoristaLocalizacaoVO mlvo) {
+        mlvo = motoristaService.notificarPassageiros(mlvo);
+        System.out.println(mlvo);        
+        return Response.ok().build();
+    }
 }

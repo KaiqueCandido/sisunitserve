@@ -17,6 +17,7 @@ br\com\sisunit\serviceimpl\EstadoServiceImpl.class
 br\com\sisunit\serviceimpl\VeiculoServiceImpl.class
 br\com\sisunit\webservice\RotaWebService$1.class
 br\com\sisunit\service\EstadoService.class
+br\com\sisunit\objectvalue\MotoristaLocalizacaoVO.class
 br\com\sisunit\dao\EstadoDao.class
 br\com\sisunit\exeption\ContaException.class
 br\com\sisunit\service\MotoristaService.class
